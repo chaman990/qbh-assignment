@@ -23,9 +23,9 @@
                 <td>
                     <button (click)="generatePdf(user)">Generate Pdf</button>
                     <button *ngIf="pdfs[user.id]" (click)="downloadPdf(pdfs[user.id].url)">Download Pdf</button>
-                    <button (click)="viewPdf(pdfs[user.id].originalcontent, user.id)">View Pdf</button>
+                    <button *ngIf="pdfs[user.id]" (click)="viewPdf(pdfs[user.id].originalcontent, user.id)">View Pdf</button>
                     <br/>
-                    <div *ngIf="pdfs[user.id]?.showViewer">
+                    <div *ngIf="pdfs[user.id]?.showViewer ">
                         
                       <pdf-viewer [src]="pdfs[user.id].url" style="display: block; width: 400px; height: 500px"></pdf-viewer>
                     </div>

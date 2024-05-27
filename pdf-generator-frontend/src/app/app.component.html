@@ -1,0 +1,4 @@
+<app-add-users *ngIf="!editUser"></app-add-users>
+<app-edit-user (updateUserSuccess)="editUser = null" *ngIf="editUser" [editUser]="editUser"></app-edit-user>
+<hr />
+<app-users (setEditUser)="(editUser = $event)"></app-users>

@@ -1,0 +1,38 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Actions</th>
+                <th>Pdf Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of (users$ | async)">
+                <td data-label="name">{{ user.name }}</td>
+                <td data-label="email">{{ user.email }}</td>
+                <td data-label="phone">{{ user.phone }}</td>
+                <td data-label="address">{{ user.address }}</td>
+                <td data-label="actions">
+                    <button (click)="editUser(user)">Edit</button>
+                    <button (click)="deleteUser(user.id)">Delete</button>
+                </td>
+                <td>
+                    <button (click)="generatePdf(user)">Generate Pdf</button>
+                    <button *ngIf="pdfs[user.id]" (click)="downloadPdf(pdfs[user.id].url)">Download Pdf</button>
+                    <button (click)="viewPdf(pdfs[user.id].originalcontent, user.id)">View Pdf</button>
+                    <br/>
+                    <div *ngIf="pdfs[user.id]?.showViewer">
+                        
+                      <pdf-viewer [src]="pdfs[user.id].url" style="display: block; width: 400px; height: 500px"></pdf-viewer>
+                    </div>
+                  
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
